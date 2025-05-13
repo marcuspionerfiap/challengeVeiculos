@@ -1,7 +1,7 @@
 package com.marcus.fiap.application.service;
 
 import com.marcus.fiap.domain.model.Veiculo;
-import com.marcus.fiap.domain.repository.VeiculoRepository;
+import com.marcus.fiap.infrastructure.persistance.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class CadastraVeiculoService {
 
     public Veiculo editar(Long id, Veiculo veiculoDB) {
         Veiculo veiculo = veiculoRepository.buscarVeiculoPorId(id)
-                .orElseThrow(() -> new RuntimeException("Veículo não encontrado!"));
+                .orElseThrow(() -> new RuntimeException("Cadastro de veículo não encontrado!"));
 
         veiculo.setAno(veiculoDB.getAno());
         veiculo.setCor(veiculoDB.getCor());

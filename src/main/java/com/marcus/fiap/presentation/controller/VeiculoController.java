@@ -1,4 +1,4 @@
-package com.marcus.fiap.application.controller;
+package com.marcus.fiap.presentation.controller;
 
 import com.marcus.fiap.application.service.CadastraVeiculoService;
 import com.marcus.fiap.domain.model.Veiculo;

@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:16
+    networks:
+      - challengeVeiculos
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./scripts/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+
+  app:
+    links:
+      - db
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB: ${DB_URL}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - challengeVeiculos
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+networks:
+  redeburguers:
+    driver: bridge

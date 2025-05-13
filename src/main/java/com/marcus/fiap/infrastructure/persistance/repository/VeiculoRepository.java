@@ -1,4 +1,4 @@
-package com.marcus.fiap.domain.repository;
+package com.marcus.fiap.infrastructure.persistance.repository;
 
 import com.marcus.fiap.domain.model.Veiculo;
 

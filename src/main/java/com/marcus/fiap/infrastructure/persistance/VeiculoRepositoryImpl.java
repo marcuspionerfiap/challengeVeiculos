@@ -1,7 +1,7 @@
 package com.marcus.fiap.infrastructure.persistance;
 
 import com.marcus.fiap.domain.model.Veiculo;
-import com.marcus.fiap.domain.repository.VeiculoRepository;
+import com.marcus.fiap.infrastructure.persistance.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
