@@ -1,36 +1,45 @@
-version: '3'
-
 services:
-  db:
-    image: postgres:16
-    networks:
-      - challengeVeiculos
+
+  postgres_app:
+    image: postgres:17
+    container_name: postgres_app
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB}
+      POSTGRES_DB: challengeVeiculos_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
     ports:
       - "5432:5432"
     volumes:
-      - ./scripts/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+      - pgdata_app:/var/lib/postgresql/data
 
-  app:
-    links:
-      - db
+  postgres_keycloak:
+    image: postgres:17
+    container_name: postgres_keycloak
     environment:
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB: ${DB_URL}
-    build:
-      context: .
-      dockerfile: Dockerfile
-    networks:
-      - challengeVeiculos
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - pgdata_keycloak:/var/lib/postgresql/data
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.1
+    container_name: keycloak
+    command: start-dev --import-realm
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres_keycloak:5432/keycloak
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: admin
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
     ports:
       - "8080:8080"
+    volumes:
+      - ./realm-revenda.json:/opt/keycloak/data/import/realm-challenge-veiculos.json
     depends_on:
-      - db
+      - postgres_keycloak
 
-networks:
-  redeburguers:
-    driver: bridge
+volumes:
+  pgdata_app:
+  pgdata_keycloak:

@@ -1,0 +1,32 @@
+{
+  "realm": "challenge-veiculos",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "challenge-veiculos-app",
+      "enabled": true,
+      "publicClient": true,
+      "redirectUris": ["*"],
+      "webOrigins": ["*"],
+      "protocol": "openid-connect",
+      "standardFlowEnabled": true
+    }
+  ],
+  "users": [
+    {
+      "username": "usuarioTeste",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Usuário",
+      "lastName": "Teste",
+      "email": "usuarioTeste@challengeveiculos.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "951909",
+          "temporary": false
+        }
+      ]
+    }
+  ]
+}
