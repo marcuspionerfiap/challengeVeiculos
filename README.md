@@ -68,7 +68,7 @@ Para executar via docker compose:
 git clone https://github.com/marcuspionerfiap/challengeVeiculos.git
 cd challengeVeiculos/
 
-# Segundo: Suba o banco de dados com Docker
+# Segundo: Suba os containers via Docker
 docker-compose up -d
 ```
 
