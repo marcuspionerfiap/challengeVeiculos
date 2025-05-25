@@ -30,11 +30,4 @@ public class VeiculoService {
         return veiculoRepository.salvarVeiculo(veiculo);
     }
 
-    public List<Veiculo> listarVeiculosAVendaPorPreco() {
-        return veiculoRepository.listarVeiculosAVendaPorPreco();
-    }
-
-    public List<Veiculo> listarVeiculosVendidosPorPreco() {
-        return veiculoRepository.listarVeiculosVendidosPorPreco();
-    }
 }
