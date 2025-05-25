@@ -31,7 +31,7 @@
 		<spring-boot.version>3.4.5</spring-boot.version>
 		<sonar.organization>marcuspioner</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.projectKey>marcuspioner_challenge-veiculos-api</sonar.projectKey>
+		<sonar.projectKey>challenge-veiculos-api</sonar.projectKey>
 	</properties>
 	<dependencies>
 		<dependency>
