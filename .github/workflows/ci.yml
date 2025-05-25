@@ -41,4 +41,4 @@ jobs:
       - name: Build e Análise com SonarCloud
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=challengeVeiculos -Dsonar.organization=marcuspioner -Dsonar.host.url=https://sonarcloud.io
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=challenge-veiculos-api -Dsonar.organization=marcuspioner -Dsonar.host.url=https://sonarcloud.io
