@@ -1,5 +1,6 @@
 package com.marcus.fiap;
 
+import com.marcus.fiap.application.service.ListaVeiculoService;
 import com.marcus.fiap.application.service.VeiculoService;
 import com.marcus.fiap.domain.model.Veiculo;
 import com.marcus.fiap.infrastructure.persistance.repository.VeiculoRepository;
@@ -18,6 +19,9 @@ class VeiculoServiceTest {
 
     @InjectMocks
     private VeiculoService veiculoService;
+
+    @InjectMocks
+    private ListaVeiculoService listaVeiculoService;
 
     @Mock
     private VeiculoRepository veiculoRepository;
@@ -84,7 +88,7 @@ class VeiculoServiceTest {
         List<Veiculo> listaMock = List.of(new Veiculo(), new Veiculo());
         when(veiculoRepository.listarVeiculosAVendaPorPreco()).thenReturn(listaMock);
 
-        List<Veiculo> resultado = veiculoService.listarVeiculosAVendaPorPreco();
+        List<Veiculo> resultado = listaVeiculoService.listarVeiculosAVendaPorPreco();
 
         assertEquals(2, resultado.size());
         verify(veiculoRepository).listarVeiculosAVendaPorPreco();
@@ -95,7 +99,7 @@ class VeiculoServiceTest {
         List<Veiculo> listaMock = List.of(new Veiculo());
         when(veiculoRepository.listarVeiculosVendidosPorPreco()).thenReturn(listaMock);
 
-        List<Veiculo> resultado = veiculoService.listarVeiculosVendidosPorPreco();
+        List<Veiculo> resultado = listaVeiculoService.listarVeiculosVendidosPorPreco();
 
         assertEquals(1, resultado.size());
         verify(veiculoRepository).listarVeiculosVendidosPorPreco();

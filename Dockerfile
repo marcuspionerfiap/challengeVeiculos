@@ -1,23 +1,14 @@
-FROM maven:3.8.4-openjdk-17-slim AS builder
-
+# Etapa 1: build com Maven
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
 WORKDIR /app
-
 COPY pom.xml .
-
-RUN mvn dependency:go-offline
-
 COPY src ./src
+RUN mvn clean package -DskipTests
 
-RUN mvn package
-
-FROM openjdk:17-slim
-
-RUN adduser --disabled-password --gecos '' appuser
-
-USER appuser
-
+# Etapa 2: imagem final com JAR
+FROM eclipse-temurin:17-jdk
 WORKDIR /app
-
-COPY --from=builder /app/target/app.jar .
-
-CMD ["java", "-jar", "app.jar"]
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+EXPOSE 8081
+ENTRYPOINT ["java", "-jar", "app.jar"]

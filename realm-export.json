@@ -1,32 +1,35 @@
 {
-  "realm": "challenge-veiculos",
+  "realm": "challenge",
   "enabled": true,
-  "clients": [
-    {
-      "clientId": "challenge-veiculos-app",
-      "enabled": true,
-      "publicClient": true,
-      "redirectUris": ["*"],
-      "webOrigins": ["*"],
-      "protocol": "openid-connect",
-      "standardFlowEnabled": true
-    }
-  ],
   "users": [
     {
-      "username": "usuarioTeste",
+      "username": "admin",
       "enabled": true,
       "emailVerified": true,
-      "firstName": "Usuário",
-      "lastName": "Teste",
-      "email": "usuarioTeste@challengeveiculos.com",
+      "firstName": "Admin",
+      "lastName": "User",
+      "email": "admin@example.com",
       "credentials": [
         {
           "type": "password",
-          "value": "951909",
+          "value": "admin",
           "temporary": false
         }
       ]
     }
+  ],
+  "clients": [
+    {
+      "clientId": "challenge-veiculos-api",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "client-secret",
+      "protocol": "openid-connect",
+      "redirectUris": ["http://localhost:8081/*"],
+      "webOrigins": ["+"],
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true
+    }
   ]
+
 }
